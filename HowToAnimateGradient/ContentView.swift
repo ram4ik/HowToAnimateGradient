@@ -9,8 +9,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var movePoints = false
+    
     var body: some View {
-        Text("Hello, World!")
+        LinearGradient(gradient: Gradient(colors: [Color.black, Color.blue, Color.white, Color.blue]), startPoint: .bottom, endPoint: self.movePoints ? .topLeading : .topTrailing)
+            .edgesIgnoringSafeArea(.all)
+            .animation(Animation.easeInOut(duration: 2).delay(0.5).repeatForever(autoreverses: true))
+            .onAppear() {
+                self.movePoints.toggle()
+        }
     }
 }
 
